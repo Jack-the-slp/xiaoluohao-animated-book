@@ -2,12 +2,12 @@
 
 ## 需要什么
 
-先确认你使用的是能访问工作文件夹、运行命令和加载 Skills 的 AI 工作工具。本教程主要面向 Codex。只把文件发进普通网页聊天框，不等于安装到电脑。
+各类 AI Agent 都可以使用这套流程，Codex 只是一个示例。先让你正在使用的 Agent 读取仓库，检查文件操作、命令执行、生图和导出工具，并按自己的技能机制安装或加载。只把文件发进普通网页聊天框，不等于安装到电脑。
 
 - **体验现成小样：** 只需要现代浏览器。
 - **生成 HTML：** Python 3.10 或更高版本和 Pillow。
 - **做新的角色与动作：** AI 还需要有图片生成/编辑能力，或你提供可用且有权使用的连续动作图集。
-- **生成动画 PPTX：** 当前 Codex 环境必须提供 presentations 技能及 Artifact Tool 运行时。仓库不含这些依赖；先让 AI 检查，避免做到最后才发现不能导出。
+- **生成动画 PPTX：** 使用 Agent 自己可用的 PPT 工具。仓库自带构建脚本使用 presentations 技能与 Artifact Tool 运行时，仓库不含这些依赖；其他工具可按相同要求制作。先检查导出能力，避免做到最后才发现不能交付。
 
 ## 路线 A：把链接丢给 AI 自动安装
 
@@ -19,7 +19,7 @@
 
 ```text
 请安装 https://github.com/Jack-the-slp/xiaoluohao-animated-book ，
-先读仓库里的 aizidonganzhuangskill.md，保留已有同名技能，检查依赖，
+先读仓库里的 aizidonganzhuangskill.md，按你自己的 Agent 环境安装或加载，保留已有同名技能，检查依赖，
 运行随附的两动作小样，并告诉我实际安装位置和验证结果。
 ```
 
@@ -27,14 +27,14 @@ AI 应自行下载并检查仓库，不应要求你在聊天里粘贴密钥。�
 
 ### 3. 核对安装结果
 
-让 AI 给出实际路径和 `SKILL.md` 是否存在。Codex 当前通用的用户技能目录为：
+让 AI 给出实际安装或加载位置，确认 `SKILL.md` 与配套资源存在。各 Agent 的技能目录可能不同，不必照搬下面的 Codex 示例：
 
 ```text
 Windows：C:\Users\你的用户名\.agents\skills\xiaoluohao-animated-book\SKILL.md
 macOS/Linux：~/.agents/skills/xiaoluohao-animated-book/SKILL.md
 ```
 
-现有环境也可能使用 `$CODEX_HOME/skills` 或 `~/.codex/skills`。安装器发现默认旧目录已有同名技能会停下，不会替你迁移。不要两处各放一份。
+Codex 现有环境也可能使用 `$CODEX_HOME/skills` 或 `~/.codex/skills`。安装器发现默认旧目录已有同名技能会停下，不会替你迁移。不要两处各放一份。其他 Agent 以自身配置为准；没有原生 Skills 目录时，也可完整保留仓库，让 Agent 读取 `SKILL.md` 后按流程执行。
 
 路径依据：[OpenAI 官方安装文档中的 Agent Skills 目录表](https://developers.openai.com/api/reference/cli#use-the-cli-from-a-coding-agent)（核对日期：2026-11-10）。宿主配置与版本有差异时，以实际加载结果为准。
 
@@ -51,7 +51,7 @@ python scripts/demo.py --out "./我的动画书小样"
 ### 5. 在下一轮说出主题
 
 ```text
-用 $xiaoluohao-animated-book 做一本《小兔在幼儿园》，包括跑步、跳远、洗手、吃饭，
+用小螺号动画书 skill 做一本《小兔在幼儿园》，包括跑步、跳远、洗手、吃饭，
 温暖水彩风，使用“谁／在哪里／做什么”三行短句，输出本地动画PPTX。
 ```
 
@@ -82,10 +82,10 @@ python --version
 ### 4. 运行本地安装器
 
 ```powershell
-python scripts/install.py
+python scripts/install.py --dest "你的Agent实际使用的skills父目录"
 ```
 
-它会列出实际安装路径与文件数。安装器只复制本技能，不执行联网脚本、不申请管理员权限、不覆盖已有目标。已有同名目录时先停止并保留它。
+先让 Agent 确认技能目录，再替换命令中的路径。只有确认 `~/.agents/skills` 适用时，才可以省略 `--dest`。没有原生 Skills 机制时可以跳过复制安装，保留完整仓库并让 Agent 读取 `SKILL.md`。安装器会列出实际路径与文件数，只复制本技能，不执行联网脚本、不申请管理员权限、不覆盖已有目标。已有同名目录时先停止并保留它。
 
 ### 5. 安装图片处理依赖并生成小样
 
@@ -98,13 +98,13 @@ python scripts/demo.py --out "./我的动画书小样"
 
 ### 6. 回到 AI 工具
 
-在下一轮点名 `$xiaoluohao-animated-book` 或“动画书 skill”。未出现时重新打开会话，必要时重启工具。仍找不到时让 AI 核对技能搜索路径，别重复覆盖安装。
+在下一轮说“用小螺号动画书 skill……”。支持技能快捷调用的工具用自己的语法，例如 Codex 的 `$xiaoluohao-animated-book`。未出现时重新打开会话，必要时重启工具。仍找不到时让 AI 核对技能搜索路径或读取仓库说明，别重复覆盖安装。
 
 ## 常见问题
 
 **GIF 为什么在 PPT 编辑界面不动？** 先进入放映模式；编辑界面的静帧不能证明动画丢失。不同播放器表现需要分别验证。
 
-**AI 说缺少 presentations 或 Artifact Tool。** 当前环境无法执行仓库的 PPT 导出路径。换到提供依赖的 Codex 环境，或明确让 AI 改为 HTML；不要下载来历不明的运行时。
+**AI 说缺少 presentations 或 Artifact Tool。** 当前环境无法执行仓库自带的 PPT 构建脚本，但可让 Agent 使用自身的 PPT 工具完成同样要求并验证。没有可用导出工具时，再选择补齐相应环境或改为 HTML；不要下载来历不明的运行时。
 
 **没有图片生成工具。** 可先运行现成小样；新题材需要接入可用生图工具或提供动作素材。这个 skill 不附送模型服务。
 

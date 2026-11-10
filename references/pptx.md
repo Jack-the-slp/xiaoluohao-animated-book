@@ -1,6 +1,6 @@
 # 动画书 PPT 直出
 
-本技能默认输出本地 `.pptx`。沿用 presentations skill 的 Artifact Tool、本地 finalizer 和画面检查，不先建在线演示文稿。
+本技能默认输出本地 `.pptx`，各类 AI Agent 可使用自身可用的 PPT 工具制作。文字可编辑、动作 GIF 真正多帧嵌入、目录与前后跳转可用、原生转场和留白要求相同；工具替换不代表免除成品验收。以下是仓库自带的 presentations + Artifact Tool 构建路径，其命令仅在相应依赖可用时执行，不先建在线演示文稿。
 
 1. 用 `load_workspace_dependencies` 获得实际 Node 和库路径，读取当前 presentations skill 的本地构建、排版与验收指导。
 2. 工程通常使用 `book.json`：角色、封面、动作 WebP、场景与原 HTML 格式相同。每个动作可加 `scene`，或配置 `pptx.sceneByAction`；否则取 `defaultScene`。游泳使用已批准的水面背景。绘本 GIF 是一次播放，不能用单张截图代替。
@@ -27,4 +27,4 @@ python "<skill>/scripts/pptx.py" build "<项目>" --out "<项目>/output/书名_
 
 ## 公开分发边界
 
-本仓库包含项目脚本，不包含 `@oai/artifact-tool`、presentations 技能或 Codex 私有运行时。PPT 构建只在这些依赖实际可用的环境执行。不要把运行时拷贝进仓库或从不明来源下载。HTML 路径不需要这些依赖。
+本仓库包含项目脚本，不包含 `@oai/artifact-tool`、presentations 技能或 Codex 私有运行时。仓库自带的 PPT 构建脚本只在这些依赖实际可用时执行；其他 Agent 可使用自身可用工具，按前述要求制作并验证。不要把运行时拷贝进仓库或从不明来源下载。HTML 路径不需要这些依赖。

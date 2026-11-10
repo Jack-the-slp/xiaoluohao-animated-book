@@ -10,7 +10,7 @@
 
 ## 老师从这里开始
 
-1. 在支持本地文件、命令执行和 Skills 的 AI 工作环境中打开一个工作文件夹。本仓库主要面向 **Codex**；普通网页聊天框不能把文件安装到你的电脑。
+1. 在你使用的 **AI Agent** 中打开一个工作文件夹。各类 AI Agent 都可以使用这套流程；由 Agent 检查本地文件、命令、生图和导出能力，并按自己的技能机制安装或加载。Codex 只是其中一个示例；普通网页聊天框收到链接不等于已安装到电脑。
 2. 把下面的安装口令完整复制给 AI。也可以直接发送 [AI 自动安装说明](aizidonganzhuangskill.md) 的链接。
 3. 安装后在下一轮消息点名技能，并说出绘本主题、动作和输出格式。
 
@@ -18,14 +18,14 @@
 
 ```text
 请从 https://github.com/Jack-the-slp/xiaoluohao-animated-book 安装小螺号动画书 skill。
-先读取仓库的 aizidonganzhuangskill.md，检查当前环境，保留已有同名技能，
+先读取仓库的 aizidonganzhuangskill.md，按你自己的 Agent 环境选择安装或加载方式，保留已有同名技能，
 安装依赖并运行随附小样；告诉我实际安装位置、检查结果和还缺什么。
 ```
 
 ### 第二句：生成自己的绘本
 
 ```text
-用 $xiaoluohao-animated-book 做一本《小兔在幼儿园》，包含跑步、跳远、洗手、吃饭四个动作，
+用小螺号动画书 skill 做一本《小兔在幼儿园》，包含跑步、跳远、洗手、吃饭四个动作，
 温暖水彩风，使用“谁／在哪里／做什么”三行短句，直接给我可编辑的本地动画PPTX。
 ```
 
@@ -58,9 +58,9 @@
 | 体验随附小样 | 现代浏览器 | 离线 HTML，不需要模型账号 |
 | 从已有素材构建 HTML | Python 3.10+、Pillow | 单文件 HTML、文件夹版、ZIP |
 | 制作新题材和新动作 | 能操作文件的 AI + 可用的图片生成/编辑工具 | 连续姿态图、动画及绘本 |
-| 导出本地 PPTX | 上述环境 + Codex 的 presentations 技能与 Artifact Tool 运行时 | 嵌入动作 GIF、可编辑文字、目录和翻页过渡 |
+| 导出本地 PPTX | Agent 可用的 PPT 制作工具；仓库自带脚本使用 presentations 技能与 Artifact Tool 运行时 | 嵌入动作 GIF、可编辑文字、目录和翻页过渡 |
 
-PPT 依赖由宿主环境提供，不随仓库开源分发。缺少依赖时，AI 应准确报告；老师可选择具备该能力的环境或改用 HTML。不要把静态截图当成可播放的 PPT 动画。
+PPT 工具由宿主环境提供，不随仓库开源分发。自带脚本是其中一种实现；其他 Agent 可用自己的 PPT 工具实现同样要求，并验证真实动画、文字编辑和跳转。缺少导出能力时应准确报告，再按老师的选择补齐或改用 HTML。不要把静态截图当成可播放的 PPT 动画。
 
 ## 手动安装与开发者命令
 
@@ -72,13 +72,15 @@ python -m pip install -r requirements.txt
 python scripts/demo.py --out "./我的动画书小样"
 ```
 
-安装器默认写入当前用户的 `~/.agents/skills/xiaoluohao-animated-book/`，无需管理员权限；发现已有目标时停止，不覆盖。使用自定义 Skills 路径：
+安装器默认写入当前用户的 `~/.agents/skills/xiaoluohao-animated-book/`，无需管理员权限；发现已有目标时停止，不覆盖。这只是脚本的默认路径，不是所有 Agent 的统一路径。其他 Agent 应先识别自己的技能目录，再指定：
 
 ```powershell
 python scripts/install.py --dest "你的AI工具的skills目录"
 ```
 
 已有旧版 `~/.codex/skills/` 同名技能时，先核对现有版本和配置，避免同时安装两份。安装器不修改本机既有技能。详见 [教师教程](docs/installation.md)。
+
+没有原生 Skills 目录的 Agent，也可在工作目录完整保留仓库，让它读取 `SKILL.md` 和配套资源后执行。支持快捷调用的工具使用自己的调用语法；自然语言“用小螺号动画书 skill……”同样可作为任务入口。`agents/openai.yaml` 仅为支持该格式的工具提供显示信息。
 
 ## 仓库内容
 
