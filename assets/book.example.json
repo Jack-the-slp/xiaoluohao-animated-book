@@ -1,0 +1,23 @@
+{
+  "title": "谁在哪里做什么",
+  "coverLines": ["谁在哪里", "做什么？"],
+  "logo": "source/brand/xiaoluohao-logo.png",
+  "footerText": "小螺号听觉言语语言康复平台：",
+  "footerAddress": "TC-SLP.top",
+  "defaultCharacter": "gege",
+  "defaultScene": "park",
+  "autoPlay": true,
+  "coverHoldMs": 2600,
+  "pageHoldMs": 800,
+  "characters": [
+    {"id": "gege", "name": "哥哥", "subject": "哥哥", "age": "青少年", "dot": "#5b8fc9", "cover": "source/covers/gege.png"}
+  ],
+  "scenes": [
+    {"id": "plain", "name": "简洁", "location": "这里", "image": null, "water": false},
+    {"id": "park", "name": "公园", "location": "公园里", "image": "source/scenes/park.jpg", "water": false}
+  ],
+  "pages": [
+    {"key": "run", "word": "跑步", "note": "一二一，向前跑。", "pool": false, "animations": {"gege": "source/animations/gege/01-run.webp"}},
+    {"key": "jump", "word": "跳远", "note": "双脚一蹬，向前跳！", "pool": false, "animations": {"gege": "source/animations/gege/02-jump.webp"}}
+  ]
+}

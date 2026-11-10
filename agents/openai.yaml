@@ -1,0 +1,4 @@
+interface:
+  display_name: "小螺号动画书"
+  short_description: "直接制作可编辑的动画书PPT，保留宽留白、动作动画、目录导航和翻页过渡"
+  default_prompt: "用 $xiaoluohao-animated-book 沿用我们确定的绘本风格，直接制作留白充足、翻页流畅的本地动画书PPTX。"

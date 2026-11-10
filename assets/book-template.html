@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e9eddf">
+<title>__BOOK_TITLE__ · 小螺号动态绘本</title>
+<style>
+:root{color-scheme:light;--ink:#304b35;--muted:#687562;--paper:#fcf8ec;--leaf:#3f6545;--orange:#c96442;--line:#d9decb}
+*{box-sizing:border-box}body{margin:0;background:#e9eddf;color:var(--ink);font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:3px solid #d68150;outline-offset:4px}button:disabled{cursor:default;opacity:.4}
+.shell{max-width:1176px;margin:auto;padding:27px 28px 25px}.masthead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 2px 22px}.brand{font-size:15px;letter-spacing:.12em;display:flex;gap:10px;align-items:center}.brand-mark{display:inline-block;width:13px;height:17px;background:#a7b78a;border-radius:9px 9px 3px 9px;transform:rotate(-32deg)}.home{border:1px solid #cbd3bd;background:transparent;border-radius:30px;padding:8px 17px;font-size:14px}.home:hover{background:#f6f8ee}
+.book-wrap{perspective:1800px;position:relative}.book{position:relative;display:grid;grid-template-columns:1fr 1fr;min-height:548px;aspect-ratio:1.96;background:var(--paper);border-radius:12px 16px 16px 12px;box-shadow:0 3px 0 #d5d6bc,0 7px 0 -1px #f7f1df,0 10px 0 -1px #cbd1b4,0 22px 44px -19px #60704e70;isolation:isolate}
+.book:after{content:"";position:absolute;z-index:4;inset:0 auto 0 50%;width:34px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,#8c8b6230 43%,#7e775a33 49%,#fff9dfbb 51%,#a9a58619 65%,transparent);pointer-events:none}
+.page{position:relative;overflow:hidden;min-width:0;background:var(--paper)}.left-page{border-radius:12px 0 0 12px;padding:44px 50px 39px 53px;display:flex;flex-direction:column;justify-content:center}.right-page{border-radius:0 16px 16px 0;padding:22px 21px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;transform-origin:left center;backface-visibility:hidden}
+.page-count{position:absolute;top:35px;left:53px;font-size:12px;letter-spacing:.16em;color:#7b866a}.page-count:before{content:"";display:inline-block;vertical-align:middle;width:20px;height:2px;background:#b3c198;margin-right:10px}.eyebrow{font-size:13px;letter-spacing:.16em;color:#788663;margin:0 0 22px}.cover-title{font-size:clamp(32px,4.3vw,56px);font-weight:750;line-height:1.46;letter-spacing:.04em;margin:0}.cover-title em{font-style:normal;color:var(--orange)}.cover-note{font-size:17px;color:var(--muted);line-height:1.9;margin:19px 0 25px}.primary{border:0;background:var(--leaf);color:white;border-radius:30px;padding:12px 25px;align-self:flex-start;box-shadow:0 3px 0 #2f4a32;font-size:16px}.primary:hover{background:#315238}.cover-sign{position:absolute;bottom:32px;left:53px;color:#899173;font-size:12px;letter-spacing:.06em}
+.sentence{margin:0;font-weight:650;line-height:1.7;font-size:clamp(23px,3vw,39px);letter-spacing:.06em}.sentence .lead{display:block}.sentence .verb{display:block;color:var(--orange);font-size:clamp(37px,5vw,64px);font-weight:750;line-height:1.65;letter-spacing:.04em}.action-note{font-size:17px;color:var(--muted);line-height:1.9;margin:23px 0 0}.little-rule{width:48px;height:3px;border-radius:3px;background:#c9d4b1;margin-top:33px}.page-word{position:absolute;bottom:30px;left:53px;display:flex;align-items:center;gap:8px;font-size:12px;color:#8b927b}.page-word:before{content:"";width:5px;height:5px;border-radius:50%;background:#b7c49b}
+.art{display:block;width:100%;height:auto;max-height:100%;aspect-ratio:1;object-fit:contain}.art-wrap{width:100%;min-width:0}.replay{position:absolute;right:30px;bottom:22px;border:1px solid #d3dac4;background:#fcf8ecee;border-radius:24px;padding:8px 16px;display:flex;align-items:center;gap:7px;font-size:13px}.replay:hover{background:#ecf0dd}.replay svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8}.cover-caption{position:absolute;bottom:32px;color:#6c8059;font-size:14px;letter-spacing:.13em}
+.navigation{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:26px 0 18px}.nav-btn{border:1px solid #cad3bb;background:#f5f7ed;border-radius:28px;min-width:121px;padding:11px 21px;font-size:15px;white-space:nowrap;flex-shrink:0}.nav-btn:hover:not(:disabled){background:#dce5ce}.nav-btn.next{background:var(--leaf);border-color:var(--leaf);color:#fff}.nav-btn.next:hover{background:#315238}.progress{text-align:center;color:#68785d;font-size:13px;letter-spacing:.04em}.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:9px}.action-button{border:1px solid #cdd5bf;border-radius:22px;padding:8px 17px;font-size:13px;background:transparent}.action-button:hover{background:#f3f6ea}.action-button[aria-current="page"]{background:#d6e1c5;border-color:#a9bd90;color:#355235;font-weight:650}.reading-tip{text-align:center;font-size:12px;color:#7e8b73;margin:18px 0 0;letter-spacing:.04em}
+.book.fold-out .right-page{animation:fold-out .19s ease-in forwards}.book.fold-in .right-page{animation:fold-in .19s ease-out forwards}.book.reverse .right-page{transform-origin:right center}@keyframes fold-out{from{transform:rotateY(0);opacity:1}to{transform:rotateY(-16deg);opacity:.12}}@keyframes fold-in{from{transform:rotateY(16deg);opacity:.12}to{transform:rotateY(0);opacity:1}}
+[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(min-width:1400px){.shell{padding-top:38px}}
+@media(max-width:780px){.shell{padding:22px 18px}.book{width:100%;min-height:390px;aspect-ratio:1.68}.left-page{padding:35px 24px 36px 29px}.right-page{padding:13px 12px 24px}.page-count{top:23px;left:29px}.cover-title{font-size:clamp(26px,4.8vw,42px)}.cover-note{font-size:14px;margin:12px 0 18px}.cover-sign{left:29px;bottom:22px;font-size:10px}.eyebrow{font-size:10px;margin-bottom:14px}.primary{font-size:14px;padding:10px 19px}.sentence{font-size:clamp(20px,3.6vw,30px)}.sentence .verb{font-size:clamp(28px,5vw,43px)}.action-note{font-size:13px;margin-top:12px}.little-rule{margin-top:20px}.page-word{left:29px;bottom:20px;font-size:10px}.cover-caption{font-size:11px;bottom:22px}.replay{right:14px;bottom:12px;padding:6px 11px;font-size:11px}.book:after{width:25px}.brand{font-size:13px}.action-button{padding:7px 13px}.reading-tip{line-height:1.8}}
+@media(max-width:480px){.shell{padding:17px 12px 22px}.masthead{margin-bottom:16px}.brand{font-size:12px;letter-spacing:.07em;gap:6px}.brand-mark{width:10px;height:13px}.home{padding:7px 12px;font-size:12px}.book{aspect-ratio:1.23;border-radius:9px}.left-page{padding:40px 13px 38px 20px}.right-page{padding:10px 7px 36px}.cover-title{font-size:26px;line-height:1.55;letter-spacing:0}.cover-note{font-size:12px;line-height:1.8;margin:13px 0 19px}.eyebrow{font-size:9px;letter-spacing:.04em}.primary{font-size:12px;padding:9px 14px}.cover-sign{left:20px;right:8px;bottom:21px;font-size:8px;line-height:1.7;letter-spacing:0}.cover-caption{font-size:10px;bottom:30px;letter-spacing:.04em}.page-count{top:24px;left:20px;font-size:9px;letter-spacing:.08em}.page-count:before{width:12px;margin-right:6px}.sentence{font-size:19px;letter-spacing:.02em}.sentence .verb{font-size:clamp(21px,7.1vw,28px);letter-spacing:0;line-height:1.8}.action-note{font-size:11px;line-height:1.9;max-width:12em;margin-top:11px}.little-rule{margin-top:18px;width:30px;height:2px}.page-word{left:20px;bottom:23px;font-size:9px}.book:after{width:20px}.navigation{margin:23px 0 16px}.nav-btn{min-width:90px;padding:10px 13px;font-size:12px}.progress{font-size:11px}.actions{gap:7px}.action-button{font-size:12px;padding:7px 12px}.reading-tip{font-size:10px;margin-top:15px}.replay{bottom:20px;right:12px;font-size:10px;padding:6px 9px}.replay svg{width:12px;height:12px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+@media(max-width:480px){.book.is-cover .left-page{padding-top:14px;padding-bottom:14px}.cover-title{font-size:25px}.cover-note{margin-top:10px;margin-bottom:14px}.cover-sign{display:none}}
+@media(max-width:360px){.sentence .verb{font-size:21px}}
+</style>
+<style>
+.brand img{max-width:150px;max-height:45px;object-fit:contain}.selectors{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:15px 0}.selectors strong{font-size:14px}.chip{border:1px solid #cdd5bf;background:#f8faf2;border-radius:22px;padding:8px 13px}.chip[aria-pressed=true]{background:#d6e1c5;border-color:#829e70;font-weight:bold}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}.art-wrap{position:relative;aspect-ratio:1;background-position:center;background-size:cover;overflow:hidden;border-radius:12px}.art-wrap .art{position:absolute;inset:0;width:100%;height:100%}.pool{position:absolute;left:6%;right:6%;bottom:10%;height:24%;border-radius:50%;background:#a9d9e3;box-shadow:inset 0 0 0 6px #d7f0ec}.auto{border:1px solid #cad3bb;border-radius:24px;background:#fff;padding:9px 14px}@media(max-width:480px){.selectors{gap:5px}.chip{padding:7px 9px;font-size:12px}.brand img{max-width:100px}}
+</style>
+<style>
+.left-page{padding-top:118px;padding-bottom:86px}.page-logo{position:absolute;top:28px;left:53px;width:48px;height:72px;object-fit:contain}.page-count{left:auto;right:35px;top:40px}.sentence .place{display:block;font-size:.84em;line-height:1.75}.page-word{right:32px;line-height:1.7;align-items:baseline;letter-spacing:0}.page-word:before{flex-shrink:0}.page-word .platform-address{white-space:nowrap}.cover-note{margin:15px 0 20px}
+@media(max-width:780px){.left-page{padding-top:96px;padding-bottom:76px}.page-logo{left:29px;top:22px;width:36px;height:55px}.page-count{top:29px;left:auto;right:22px}.page-word{left:29px;right:20px;bottom:20px;font-size:10px}.sentence{line-height:1.5}.sentence .place{font-size:.9em;line-height:1.5}.sentence .verb{line-height:1.5}.action-note{margin-top:10px}.cover-title{font-size:clamp(25px,4vw,39px)}.cover-note{margin:10px 0 14px}}
+@media(max-width:480px){.book{width:100%;min-height:338px;aspect-ratio:auto}.left-page,.book.is-cover .left-page{padding:76px 10px 76px 16px}.page-logo{left:16px;top:16px;width:29px;height:44px}.page-count{top:25px;right:12px;font-size:8px}.page-count:before{display:none}.sentence{font-size:19px;line-height:1.5}.sentence .place{font-size:17px;line-height:1.65}.sentence .verb{font-size:clamp(20px,6.5vw,25px);line-height:1.6}.action-note{font-size:10px;line-height:1.7;margin-top:10px}.page-word{left:16px;right:12px;bottom:17px;font-size:9px;gap:6px;line-height:1.6}.cover-title{font-size:22px;line-height:1.5}.eyebrow{font-size:8px;margin-bottom:9px;letter-spacing:0}.cover-note{font-size:10px;line-height:1.6;margin:9px 0 12px}.primary{font-size:11px;padding:8px 10px}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <header class="masthead"><div class="brand" id="book-title"></div><button class="home" id="home" aria-label="返回绘本封面">回到封面</button></header>
+  <div class="selectors" id="characters" aria-label="选择角色"><strong>角色</strong></div>
+  <div class="selectors" id="scenes" aria-label="选择场景"><strong>场景</strong></div>
+  <div class="book-wrap"><article class="book" id="book" aria-label="绘本，左边是文字，右边是动画">
+    <section class="page left-page" aria-label="文字页"><img class="page-logo" id="logo" alt="小螺号 Logo"><div id="words"></div><div class="page-word"><span><span id="platform-name"></span><span class="platform-address" id="platform-address"></span></span></div></section>
+    <section class="page right-page" id="picture" aria-label="动画页"><div class="art-wrap" id="art-wrap"></div><div class="cover-caption" id="cover-caption">一起出发吧！</div><button class="replay" id="replay" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10a9 9 0 1 1 1.8 8.6M3 4v6h6"/></svg><span id="replay-label">再看一次</span></button></section>
+  </article></div>
+  <nav class="navigation" aria-label="翻页"><button class="nav-btn" id="prev">← 上一页</button><div class="progress" id="progress" role="status" aria-live="polite" aria-atomic="true"></div><button class="nav-btn next" id="next">开始阅读 →</button></nav>
+  <nav class="actions" id="actions" aria-label="选择动作页"></nav>
+  <div class="selectors"><button class="auto" id="auto" type="button"></button></div><p class="reading-tip">选择角色和场景，看一看，读一读。在动作页手动翻页会暂停自动播放。</p>
+  <noscript><p>请使用支持 JavaScript 的浏览器打开本绘本。</p></noscript>
+</main>
+<script id="book-data" type="application/json">__BOOK_DATA__</script>
+<script>
+'use strict';
+(() => {
+  const $ = id => document.getElementById(id);
+  try {
+    const data = JSON.parse($('book-data').textContent);
+    const {pages, characters, scenes} = data;
+    if (!pages?.length || !characters?.length || !scenes?.length) throw new Error('绘本数据不完整');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    let current=-1, char=characters.find(c=>c.id===data.defaultCharacter)||characters[0], scene=scenes.find(s=>s.id===data.defaultScene)||scenes[0], auto=data.autoPlay!==false&&!reduce.matches;
+    let timer=null, turnTimer=null, turning=false, imageToken=0, activeUrl=null;
+    const book=$('book'), words=$('words'), art=$('art-wrap');
+    const clearAuto=()=>{clearTimeout(timer);timer=null;};
+    const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const subject=()=>char.subject||char.name;
+    const location=()=>scene.location;
+    const sentence=()=>subject()+'在'+location()+pages[current].word+'。';
+    function controls() {
+      $('auto').textContent=auto?'⏸ 暂停自动播放':'▶ 自动播放';
+      $('auto').setAttribute('aria-pressed',String(auto));
+      $('prev').disabled=turning||current<0;
+      $('next').disabled=turning;
+      $('home').disabled=turning||current<0;
+      $('replay').disabled=turning;
+      const open=$('open');if(open)open.disabled=turning;
+      for(const group of ['characters','scenes']) $(group).querySelectorAll('button').forEach(b=>{
+        b.disabled=turning;b.setAttribute('aria-pressed',String(b.dataset.id===(group==='characters'?char.id:scene.id)));
+      });
+      $('actions').querySelectorAll('button').forEach((b,i)=>{
+        b.disabled=turning;if(i===current)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
+      });
+    }
+    function schedule(delay) {
+      clearAuto();
+      if(auto&&!document.hidden) timer=setTimeout(()=>go(current===pages.length-1?-1:current+1),delay);
+    }
+    function release(){if(activeUrl){URL.revokeObjectURL(activeUrl);activeUrl=null;}}
+    function play() {
+      clearAuto(); release();
+      const token=++imageToken;
+      const src=current<0?char.cover:pages[current].sprite[char.id];
+      if(!src)throw new Error('当前角色的动作资源缺失');
+      const img=new Image();img.className='art';img.id='animation';img.width=620;img.height=620;
+      img.alt=current<0?char.name+'的绘本封面':sentence();
+      img.draggable=false;
+      img.onload=()=>{if(token===imageToken)schedule(current<0?data.coverHoldMs:pages[current].durationMsByCharacter[char.id]+data.pageHoldMs);};
+      img.onerror=()=>{
+        if(token!==imageToken)return;
+        clearAuto();auto=false;controls();
+        $('progress').textContent='图片未能加载，请重新打开完整绘本并核对配套资源。';
+      };
+      art.style.backgroundImage=current>=0&&scene.bg?'url('+JSON.stringify(scene.bg)+')':'none';
+      const pool=document.createElement('div');pool.className='pool';
+      pool.hidden=current<0||!pages[current].pool||scene.water;
+      art.replaceChildren(pool,img);
+      // New blob URLs ensure once-only animations restart even in single-file mode.
+      if(src.startsWith('data:')) {
+        const [header,body]=src.split(',');const raw=atob(body),bytes=Uint8Array.from(raw,c=>c.charCodeAt(0));
+        activeUrl=URL.createObjectURL(new Blob([bytes],{type:header.slice(5,header.indexOf(';'))}));img.src=activeUrl;
+      } else img.src=src+(src.includes('?')?'&':'?')+'play='+token;
+    }
+    function render() {
+      book.dataset.page=String(current+1);book.dataset.character=char.id;book.dataset.scene=scene.id;
+      book.classList.toggle('is-cover',current<0);
+      if(current<0) {
+        const title=data.coverLines.map((line,i)=>i?'<em>'+esc(line)+'</em>':esc(line)).join('<br>');
+        words.innerHTML='<p class="eyebrow">动态绘本 · '+pages.length+' 个动作</p><h1 class="cover-title">'+title+'</h1><p class="cover-note">和'+esc(char.name)+'一起，<br>看一看，读一读。</p><button class="primary" id="open">翻开绘本 →</button>';
+        $('open').onclick=()=>{auto=true;go(0);};
+        $('progress').textContent='封面 · '+pages.length+' 个动作';$('next').textContent='开始阅读 →';
+      } else {
+        const p=pages[current];
+        words.innerHTML='<span class="page-count">'+String(current+1).padStart(2,'0')+' / '+String(pages.length).padStart(2,'0')+'</span><h2 class="sentence"><span class="lead">'+esc(subject())+'</span><span class="place">在'+esc(location())+'</span><span class="verb">'+esc(p.word)+'。</span></h2><p class="action-note">'+esc(p.note)+'</p>';
+        $('progress').textContent='第 '+(current+1)+' / '+pages.length+' 页 · '+p.word;
+        $('next').textContent=current===pages.length-1?'回到封面 ↻':'下一页 →';
+      }
+      $('replay').hidden=current<0;$('cover-caption').hidden=current>=0;
+      controls();play();
+    }
+    function go(index,manual=false) {
+      if(turning||index<-1||index>=pages.length)return;
+      if(manual)auto=false;
+      clearAuto();
+      if(index===current){controls();play();return;}
+      if(reduce.matches){current=index;render();return;}
+      turning=true;controls();book.classList.toggle('reverse',index<current);book.classList.add('fold-out');
+      turnTimer=setTimeout(()=>{
+        current=index;render();book.classList.remove('fold-out');book.classList.add('fold-in');
+        turnTimer=setTimeout(()=>{book.classList.remove('fold-in','reverse');turning=false;controls();},190);
+      },190);
+    }
+    $('book-title').textContent=data.title;
+    $('platform-name').textContent=data.footerText;
+    $('platform-address').textContent=data.footerAddress;
+    $('logo').hidden=!data.logo;if(data.logo)$('logo').src=data.logo;
+    characters.forEach(c=>{
+      const b=document.createElement('button');b.type='button';b.className='chip';b.dataset.id=c.id;
+      const dot=document.createElement('span');dot.className='dot';dot.style.background=c.dot;dot.setAttribute('aria-hidden','true');
+      b.append(dot,document.createTextNode(c.name));b.onclick=()=>{char=c;render();};$('characters').append(b);
+    });
+    scenes.forEach(s=>{
+      const b=document.createElement('button');b.type='button';b.className='chip';b.dataset.id=s.id;b.textContent=s.name;
+      b.onclick=()=>{scene=s;render();};$('scenes').append(b);
+    });
+    pages.forEach((p,i)=>{
+      const b=document.createElement('button');b.type='button';b.className='action-button';b.textContent=p.word;
+      b.onclick=()=>go(i,true);$('actions').append(b);
+    });
+    $('auto').onclick=()=>{auto=!auto;controls();if(auto)play();else clearAuto();};
+    $('prev').onclick=()=>go(current-1,true);
+    $('next').onclick=()=>{if(current<0){auto=true;go(0);}else go(current===pages.length-1?-1:current+1,true);};
+    $('home').onclick=()=>go(-1,true);
+    $('replay').onclick=play;
+    document.addEventListener('keydown',e=>{
+      if(e.altKey||e.ctrlKey||e.metaKey||e.target.matches('input,textarea,select,[contenteditable=true]'))return;
+      if(e.code==='Space'&&e.target.tagName!=='BUTTON'){e.preventDefault();$('auto').click();}
+      if(e.key==='ArrowRight'){e.preventDefault();go(current===pages.length-1?-1:current+1,true);}
+      if(e.key==='ArrowLeft'){e.preventDefault();go(current-1,true);}
+      if(e.key==='Home'){e.preventDefault();go(-1,true);}
+      if(e.key==='End'){e.preventDefault();go(pages.length-1,true);}
+    });
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)clearAuto();else if(auto)play();});
+    reduce.addEventListener('change',()=>{auto=false;clearAuto();controls();});
+    window.addEventListener('pagehide',()=>{clearAuto();clearTimeout(turnTimer);release();});
+    render();
+  } catch(error) {
+    $('words').textContent='绘本暂时无法加载。请打开生成后的 index.html 或单文件绘本，而不是 source 里的模板。';
+    $('progress').textContent='加载失败：'+error.message;
+    console.error(error);
+  }
+})();
+</script>
+</body>
+</html>

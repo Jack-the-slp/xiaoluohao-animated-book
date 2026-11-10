@@ -1,0 +1,93 @@
+{
+  "checkedOn": "2026-11-10",
+  "host": "Windows; Python 3.12; Tabbit Browser",
+  "skillMetadataValidation": "passed",
+  "installerTests": {
+    "passed": 3,
+    "skipped": 0,
+    "isolatedInstallAndByteComparison": "passed",
+    "buildFromInstalledCopy": "passed"
+  },
+  "sample": {
+    "characters": 1,
+    "actions": 2,
+    "scenes": 2,
+    "singleHTMLFolderZIPChecks": "passed",
+    "allAnimationFramesDecoded": true,
+    "browser": {
+      "actions": 2,
+      "autoCycle": true,
+      "autoSceneStatePreserved": true,
+      "fileScheme": true,
+      "keyboard": true,
+      "layouts": [
+        {
+          "images": true,
+          "scrollWidth": 320,
+          "sentence": "恐龙在公园里跑步。",
+          "width": 320
+        },
+        {
+          "images": true,
+          "scrollWidth": 390,
+          "sentence": "恐龙在公园里跑步。",
+          "width": 390
+        },
+        {
+          "images": true,
+          "scrollWidth": 768,
+          "sentence": "恐龙在公园里跑步。",
+          "width": 768
+        },
+        {
+          "images": true,
+          "scrollWidth": 1280,
+          "sentence": "恐龙在公园里跑步。",
+          "width": 1280
+        }
+      ],
+      "pausedSceneStatePreserved": true,
+      "replayURLRestart": true,
+      "returnCover": true,
+      "scenes": 2
+    }
+  },
+  "visualReview": {
+    "htmlDesktopScreenshot": "inspected",
+    "html390pxScreenshot": "inspected",
+    "animationFirstMiddleLastFrames": [
+      "run",
+      "jump"
+    ],
+    "PPTScreenshot": "existing_render_inspected"
+  },
+  "notVerified": [
+    "new_PPT_build",
+    "PowerPoint_slideshow",
+    "WPS",
+    "physical_mobile_device",
+    "classroom_or_clinical_outcomes"
+  ],
+  "artifacts": {
+    "examples/demo.html": {
+      "bytes": 1877903,
+      "sha256": "296199aeb8998da711b6018a89811213f2f4d1d20fa31b289983d233deffeb72"
+    },
+    "docs/images/animated-book.gif": {
+      "bytes": 590363,
+      "sha256": "0b6d317f7a0cc5f69a9b29f6726d3a9973946b3934aa1b913572fcbdce011045"
+    },
+    "docs/images/pptx-page.png": {
+      "bytes": 544560,
+      "sha256": "6f22dcd3130ac10121cbd09224f1761a523938fe3a6a3b9822111fb1b3b545c5"
+    },
+    "docs/images/html-demo.png": {
+      "bytes": 492893,
+      "sha256": "95e4598a8bb46330391de662e60bf6e32a792931e9dcb2d7d7f36b976a72e7a4"
+    },
+    "docs/images/html-mobile.png": {
+      "bytes": 93080,
+      "sha256": "e52c26b34780547abd4b5fe9de3a8b2a5bf2e3db83dce13369cccacbfb5a1095"
+    }
+  }
+}
