@@ -63,6 +63,8 @@ python scripts/demo.py --out "./我的动画书小样"
 
 打开 [仓库首页](https://github.com/Jack-the-slp/xiaoluohao-animated-book)，点击绿色 **Code** 按钮，再点 **Download ZIP**。
 
+![仓库下载入口](images/github-download.png)
+
 ### 2. 解压
 
 在下载目录对 ZIP 选择“全部解压”。进入解压后的仓库文件夹，应能看到 `SKILL.md`、`scripts`、`assets`、`references`。

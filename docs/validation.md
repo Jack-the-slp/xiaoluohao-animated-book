@@ -15,8 +15,10 @@
 浏览器实测明细和成品哈希记录在 [validation.json](validation.json)。这份记录只陈述本次已执行的检查。
 
 - `docs/images/html-demo.png`：本次离线 HTML 小样的真实浏览器截图。
+- [390 px 窄屏截图](images/html-mobile.png)：浏览器视口检查，未替代真实手机测试。
 - `docs/images/animated-book.gif`：已有动画书中的原始多帧 GIF，逐帧解码检查；不代表 PowerPoint 放映录屏。浏览器连续截图采集出现超时，因此未采用未完成的截图序列作为演示。
 - `docs/images/pptx-page.png`：已有动画书 PPT 的页面渲染，用于说明文字、插画和导航排版；本次未把它作为 PPT 放映录屏。
+- `docs/images/github-download.png`：公开仓库中实际展开的 Code → Download ZIP 菜单。
 
 ## PPTX 与未验证项目
 
