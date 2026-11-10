@@ -88,6 +88,23 @@
     "docs/images/html-mobile.png": {
       "bytes": 93080,
       "sha256": "e52c26b34780547abd4b5fe9de3a8b2a5bf2e3db83dce13369cccacbfb5a1095"
+    },
+    "docs/images/github-download.png": {
+      "bytes": 83958,
+      "sha256": "e31c2b7064b426b8d1494c5fc65509c65531d76e454b4865275a124a0a732d49"
     }
+  },
+  "publicRepository": {
+    "url": "https://github.com/Jack-the-slp/xiaoluohao-animated-book",
+    "visibility": "public",
+    "anonymousGitCloneAndFetch": "passed",
+    "readbackCommit": "79b6f87f78c8648440cc42733a2d5734e8a1e013",
+    "allTrackedFilesMatchGitObjects": 35,
+    "binaryFilesBytesMatch": 10,
+    "textComparison": "Git clean filters normalize platform line endings",
+    "installFromAnonymousCheckout": "passed",
+    "sampleBuildFromAnonymousInstallation": "passed",
+    "githubREADMEGIFAndScreenshotsLoaded": true,
+    "directRawHTTPS": "connection interrupted; anonymous Git clone used for content verification"
   }
 }
